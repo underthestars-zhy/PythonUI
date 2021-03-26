@@ -3,6 +3,7 @@ Create App, get manager, compile App to Swift
 """
 import sys
 
+import Build
 import Platform
 
 
@@ -30,3 +31,12 @@ class App:
 
     def when_active(self):
         self.platform.set_active()
+
+    def build(self):
+        if self.name == '{name}':
+            print('Wrong - App name is not set')
+        file_dict = {
+            f"{self.name}App.swift": self.platform.get_build_file(),
+        }
+        if type(self.platform) == Platform.PlatformMac:
+            return Build.MacBuild(file_dict=file_dict)

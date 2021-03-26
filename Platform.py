@@ -6,7 +6,7 @@ import UIManager
 
 class PlatformMac:
     swift: str = (
-        "import SwiftUI\n"
+        "import SwiftUI\n\n"
         '@main\n'
         'struct {name}App: SwiftUI.App {\n'
         '    {scenePhase}\n'
@@ -34,4 +34,5 @@ class PlatformMac:
     def get_build_file(self):
         file = self.swift
         file = file.replace('    {scenePhase}\n', '')
+        file = '//\n//  Created By PythonUI\n//\n\n' + file
         return file
