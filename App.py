@@ -27,3 +27,6 @@ class App:
 
     def get_ui_manager(self, name):
         return self.platform.get_ui_manager(name), self
+
+    def when_active(self):
+        self.platform.set_active()
