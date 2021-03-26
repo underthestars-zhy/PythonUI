@@ -1,6 +1,7 @@
 """
 Platform related documents
 """
+import UIManager
 
 
 class PlatformMac:
@@ -15,3 +16,10 @@ class PlatformMac:
         '    }\n'
         '}'
     )
+
+    ui_managers = []
+
+    def get_ui_manager(self, name):
+        ui_manager = UIManager.MacUIManager(name=name)
+        self.ui_managers.append(ui_manager)
+        return ui_manager

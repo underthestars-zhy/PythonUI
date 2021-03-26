@@ -24,3 +24,6 @@ class App:
 
     def get_swift_file_str(self):
         return self.platform.swift, self
+
+    def get_ui_manager(self, name):
+        return self.platform.get_ui_manager(name), self
