@@ -7,14 +7,8 @@ import Platform
 
 
 class App:
-    swift: str = (
-        "import SwiftUI\n"
-        '@main\n'
-        'struct {name}App: SwiftUI.App {\n'
-        '    var body: some Scene {\n'
-    )
-
-    name = "{name}"
+    name = '{name}'
+    view = '{view}'
 
     def __init__(self, platform: str):
         if platform.lower() == "macos":
@@ -24,5 +18,9 @@ class App:
             sys.exit()
 
     def set_name(self, name: str):
-        self.swift = self.swift.replace(self.name, name)
+        self.platform.swift = self.platform.swift.replace(self.name, name)
         self.name = name
+        return self
+
+    def get_swift_file_str(self):
+        return self.platform.swift, self
