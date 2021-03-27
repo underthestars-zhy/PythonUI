@@ -23,6 +23,11 @@ class MacUIManager:
         self.allViews.append(view)
         return view
 
+    def get_text(self, text):
+        view = View.Text(text)
+        self.allViews.append(view)
+        return view
+
     def set_main_view(self, view: View.View):
         self.main_view = view
         self.platform.swift = str(self.platform.swift).replace(self.main_view_str, self.main_view.name + '()')
