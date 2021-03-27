@@ -65,6 +65,9 @@ class VStack:
     variables = []
     views = []
 
+    def __init__(self):
+        self.paddings = []
+
     def set_alignment(self, alignment: str):
         self.swift[0] = str(self.swift[0]).replace(self.alignment, f'.{alignment}', 1)
         self.alignment = f'.{alignment}'
@@ -136,6 +139,7 @@ class Text:
                 v_str += random.choice('abcdefghijklmnopqrstuvwxyz1234567890')
             self.variable = f'var {v_str} = "{text}"'
             self.var = v_str
+            self.paddings = []
             print(f"$ Add variable: {v_str} = {text}, String")
 
     def variable_build(self):
