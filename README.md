@@ -12,6 +12,17 @@ app = App.App(platform=str('macos'))
 app.set_name(str("PuApp")) # Your App Name
 ```
 
+### Build
+
+```python
+from PythonUI import App
+
+app = App.App(platform=str('macos'))
+app.build().save('')
+```
+
+## View
+
 ### Creat View
 
 ```python
@@ -23,11 +34,16 @@ view = um.view('ContentView')
 # um.set_main_view(view)
 ```
 
-### Build
+### Creat && Add VStack
 
 ```python
 from PythonUI import App
+import PythonUI
 
 app = App.App(platform=str('macos'))
-app.build().save('')
+um = app.get_ui_manager()[0]
+view = um.view('ContentView')
+vstack = um.get_vstack()
+vstack.set_alignment(PythonUI.Alignment.top) # Set Alignment
+view.add_view(vstack)
 ```
