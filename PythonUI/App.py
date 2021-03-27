@@ -31,10 +31,15 @@ class App:
         self.platform.set_active()
 
     def build(self):
-        if self.name == '{name}':
+        if self.name == '{name}' or self.name == '' or self.name == ' ':
             print('Wrong - App name is not set')
+
         file_dict = {
             f"{self.name}App.swift": self.platform.build(),
         }
+
+        for view in self.platform.ui_manager.views:
+            file_dict[view.name + '.swift'] = view.build()
+
         if type(self.platform) == Platform.PlatformMac:
             return Build.MacBuild(file_dict=file_dict)
