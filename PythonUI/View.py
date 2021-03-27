@@ -29,3 +29,27 @@ class View:
         if self.code == '{code}' or self.code == ' ' or self.code == '':
             print(f'Wrong - {self.name} code is not set')
         return file
+
+
+class VStack:
+    """
+    Vertically arranged view
+    """
+
+    swift: list = [
+        'VStack(alignment: .center, spacing: nil) {\n',
+        '}'
+    ]
+
+    parameter = '{parameter}'
+    alignment = '.center'
+    spacing = 'nil'
+    codes: list = []
+
+    def build(self):
+        code_list = self.swift.copy()
+        code_list.insert(1, self.codes)
+        code_str = ''
+        for code in code_list:
+            code_str += code
+        return code_str
