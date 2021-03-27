@@ -2,9 +2,7 @@
 Create App, get manager, compile App to Swift
 """
 import sys
-
-import Build
-import Platform
+from PythonUI import Build, Platform
 
 
 class App:
@@ -26,8 +24,8 @@ class App:
     def get_swift_file_str(self):
         return self.platform.swift, self
 
-    def get_ui_manager(self, name):
-        return self.platform.get_ui_manager(name), self
+    def get_ui_manager(self):
+        return self.platform.get_ui_manager(), self
 
     def when_active(self):
         self.platform.set_active()
@@ -36,7 +34,7 @@ class App:
         if self.name == '{name}':
             print('Wrong - App name is not set')
         file_dict = {
-            f"{self.name}App.swift": self.platform.get_build_file(),
+            f"{self.name}App.swift": self.platform.build(),
         }
         if type(self.platform) == Platform.PlatformMac:
             return Build.MacBuild(file_dict=file_dict)

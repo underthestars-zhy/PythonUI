@@ -1,7 +1,7 @@
 """
 Platform related documents
 """
-import UIManager
+from PythonUI import UIManager
 
 
 class PlatformMac:
@@ -18,20 +18,20 @@ class PlatformMac:
         '}'
     )
 
-    ui_managers = []
     used_scenePhase = False
 
-    def get_ui_manager(self, name):
-        ui_manager = UIManager.MacUIManager(name=name)
-        self.ui_managers.append(ui_manager)
-        return ui_manager
+    def __init__(self):
+        self.ui_manager = UIManager.MacUIManager(platform=self)
+
+    def get_ui_manager(self):
+        return self.ui_manager
 
     def set_active(self):
         if not self.used_scenePhase:
             self.used_scenePhase = True
             self.swift = self.swift.replace('{scenePhase}', '@Environment(\\.scenePhase) private var scenePhase')
 
-    def get_build_file(self):
+    def build(self):
         file = self.swift
         file = file.replace('    {scenePhase}\n', '')
         file = '//\n//  Created By PythonUI\n//\n\n' + file
