@@ -13,3 +13,13 @@ class Alignment:
     topLeading = 'topLeading'
     topTrailing = 'topTrailing'
     trailing = 'trailing'
+
+
+class EdgeSet:
+    all = 'all'
+    bottom = 'bottom'
+    horizontal = 'horizontal'
+    leading = 'leading'
+    top = 'top'
+    trailing = 'trailing'
+    vertical = 'vertical'

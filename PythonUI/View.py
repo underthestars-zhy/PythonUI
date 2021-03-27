@@ -55,7 +55,7 @@ class VStack:
 
     swift: list = [
         'VStack(alignment: .center, spacing: nil) {\n',
-        '}\n'
+        '}'
     ]
 
     parameter = '{parameter}'
@@ -86,6 +86,9 @@ class VStack:
         for code_ in code_list:
             code_str += ('\t' + code_)
 
+        for item in self.paddings:
+            code_str += f'{item}'
+
         return code_str
 
     def variable_build(self):
@@ -96,6 +99,28 @@ class VStack:
         self.codes.append(view.build())
         if len(view.variable_build()) != 0:
             self.variables += view.variable_build()
+
+    paddings = []
+
+    def padding(self, pads, spacing=0):
+        if type(pads) == list:
+            padding = '.padding(['
+            for item in pads:
+                padding += f'.{item},'
+            if spacing == 0:
+                padding += '])\n'
+            else:
+                padding += f'], {spacing})\n'
+            self.paddings.append(padding)
+        else:
+            padding = '.padding('
+            if spacing == 0:
+                padding += ')\n'
+            else:
+                padding += f'{spacing})\n'
+            self.paddings.append(padding)
+
+        return self
 
 
 class Text:
@@ -117,5 +142,30 @@ class Text:
         return [self.variable]
 
     def build(self):
-        b_str = f'Text({self.var})\n'
+        b_str = f'    Text({self.var})'
+        for item in self.paddings:
+            b_str += f'{item}'
+        b_str += '\n'
         return b_str
+
+    paddings = []
+
+    def padding(self, pads, spacing=0):
+        if type(pads) == list:
+            padding = '.padding(['
+            for item in pads:
+                padding += f'.{item},'
+            if spacing == 0:
+                padding += '])\n'
+            else:
+                padding += f'], {spacing})\n'
+            self.paddings.append(padding)
+        else:
+            padding = '.padding('
+            if spacing == 0:
+                padding += ')\n'
+            else:
+                padding += f'{spacing})\n'
+            self.paddings.append(padding)
+
+        return self
