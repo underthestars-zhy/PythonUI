@@ -1,7 +1,6 @@
 """
 Create various views
 """
-import PythonUI
 
 
 class View:
@@ -58,6 +57,9 @@ class VStack:
         self.swift[0] = str(self.swift[0]).replace(self.alignment, f'.{alignment}', 1)
         self.alignment = f'.{alignment}'
 
+    def set_spacing(self, spacing):
+        self.swift[0] = str(self.swift[0]).replace(self.spacing, f'{spacing}', 1)
+        self.spacing = f'{spacing}'
 
     def build(self):
         if len(self.codes) == 0:

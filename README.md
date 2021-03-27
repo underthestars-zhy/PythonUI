@@ -45,5 +45,6 @@ um = app.get_ui_manager()[0]
 view = um.view('ContentView')
 vstack = um.get_vstack()
 vstack.set_alignment(PythonUI.Alignment.top) # Set Alignment
+vstack.set_spacing(1) # Set Spacing
 view.add_view(vstack)
 ```
